@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'View/HomeScreen.dart';
+import 'View/Home/home_view.dart';
+import 'View/widgets/widget_drawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,11 +9,13 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      home: DrawerZome(
+        screen: HomeView(),
+      ),
     );
   }
 }
