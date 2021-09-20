@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:upprog/Controller/controllerhome.dart';
 
 import 'View/Home/home_view.dart';
 import 'View/widgets/widget_drawer.dart';
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //just call DrawerZome (screen )
       home: DrawerZome(
-        screen: HomeView(),
+        screen: GetX<ControllerHome>(
+            init: ControllerHome(),
+            builder: (controller) =>
+                controller.listScreen[controller.indextbottonApp.value]),
       ),
     );
   }

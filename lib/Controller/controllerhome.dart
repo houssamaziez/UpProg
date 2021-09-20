@@ -1,8 +1,17 @@
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
+import 'package:upprog/View/AddProduct/add_product.dart';
+import 'package:upprog/View/Home/home_view.dart';
+import 'package:upprog/View/Pannier/screen_pannier.dart';
 import 'package:upprog/const/list_data.dart';
 
 class ControllerHome extends GetxController {
+  var listScreen = const [
+    HomeView(),
+    Scrennaddproduct(),
+    ScreenPannier(),
+  ].obs;
+
   @override
   void onInit() {
     chngeList(0);
@@ -11,6 +20,7 @@ class ControllerHome extends GetxController {
 
   var listCard = [].obs;
   var indextnavigator = 0.obs;
+  var indextbottonApp = 0.obs;
   final drawerController = ZoomDrawerController();
   chngeList(indext) {
     switch (indext) {
@@ -30,8 +40,13 @@ class ControllerHome extends GetxController {
     }
   }
 
-  navigIndext(indext) {
+  indextnavigatorChng(indext) {
     indextnavigator.value = indext;
+    update();
+  }
+
+  indextbottonAppChng(indext) {
+    indextbottonApp.value = indext;
     update();
   }
 }
