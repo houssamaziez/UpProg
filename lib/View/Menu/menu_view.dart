@@ -4,7 +4,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 class MenuView extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final controller;
-  MenuView({this.controller});
+  MenuView({Key? key, this.controller}) : super(key: key);
   final drawerController = ZoomDrawerController();
 
   @override
@@ -19,8 +19,6 @@ class MenuView extends StatelessWidget {
           child: InkWell(
             borderRadius: const BorderRadius.all(Radius.circular(100)),
             onTap: () {
-              print(controller.toggle());
-
               controller.toggle!();
             },
             child: const Icon(
@@ -41,8 +39,6 @@ class MenuView extends StatelessWidget {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(100)),
               onTap: () {
-                print(controller.toggle());
-
                 controller.toggle!();
               },
               child: const CircleAvatar(

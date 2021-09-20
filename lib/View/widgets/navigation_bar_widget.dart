@@ -47,6 +47,7 @@ class NavifationBar extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(40)),
           onTap: () {
             contrlb.navigIndext(indext);
+            contrlb.chngeList(indext);
           },
           child: GetX<ControllerHome>(
             init: ControllerHome(),

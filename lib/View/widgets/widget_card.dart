@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CardWidget extends StatelessWidget {
-  String image, title, prix;
-  CardWidget(
+  final String image, title, prix;
+  const CardWidget(
       {Key? key, required this.image, required this.title, required this.prix})
       : super(key: key);
 
@@ -25,7 +25,7 @@ class CardWidget extends StatelessWidget {
                 height: 53,
                 child: Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       title,
                       style: const TextStyle(
@@ -35,7 +35,7 @@ class CardWidget extends StatelessWidget {
                       prix,
                       style: const TextStyle(fontSize: 13),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),

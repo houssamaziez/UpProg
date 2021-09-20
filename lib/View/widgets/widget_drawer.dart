@@ -5,7 +5,7 @@ import 'package:upprog/Controller/controller_drawer.dart';
 import 'package:upprog/View/Menu/menu_view.dart';
 
 class DrawerZome extends StatelessWidget {
-  var controller = Get.put(ControllerDrawer());
+  final controller = Get.put(ControllerDrawer());
   // ignore: prefer_typing_uninitialized_variables
   final screen;
   // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
