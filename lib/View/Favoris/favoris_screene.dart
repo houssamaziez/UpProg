@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:upprog/View/widgets/widget_bottom_navigation.dart';
 
-class Scrennaddproduct extends StatelessWidget {
-  const Scrennaddproduct({Key? key}) : super(key: key);
+class ScrennFavoris extends StatelessWidget {
+  const ScrennFavoris({Key? key}) : super(key: key);
 
   // final ZoomDrawerController drawercontroller;
 
@@ -12,8 +12,8 @@ class Scrennaddproduct extends StatelessWidget {
       children: [
         const Center(
           child: Text(
-            "Screnn add product",
-            style: TextStyle(fontSize: 40),
+            "Screnn Favoris",
+            style: TextStyle(fontSize: 50),
           ),
         ),
         BottomNavigation()

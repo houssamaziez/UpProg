@@ -33,13 +33,14 @@ class HomeView extends StatelessWidget {
                     itemCount: constroller.listCard.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.only(left: 3.0, right: 3.0),
+                        padding: const EdgeInsets.only(
+                            left: 3.0, right: 3.0, top: 6),
                         child: CardWidget(
                           image:
                               constroller.listCard[index]["image"].toString(),
                           title:
                               constroller.listCard[index]["title"].toString(),
-                          prix: constroller.listCard[index]["prix"].toString(),
+                          price: constroller.listCard[index]["prix"].toString(),
                         ),
                       );
                     }),
