@@ -6,4 +6,10 @@ class ControllerProfile extends GetxController {
     indextcolor.value = indext;
     update();
   }
+
+  var indextsize = 1.obs;
+  indextsizeChng(indext) {
+    indextsize.value = indext;
+    update();
+  }
 }
