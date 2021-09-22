@@ -230,7 +230,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     _obscureText
                                         ? Icons.visibility
                                         : Icons.visibility_off,
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                   ),
                                 ),
                               ),
