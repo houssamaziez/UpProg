@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upprog/View/HomeScreen.dart';
-
+import 'package:upprog/View/widgets/login_button.dart';
 
 class Authenticationscreen extends StatefulWidget {
   @override
@@ -10,21 +10,17 @@ class Authenticationscreen extends StatefulWidget {
 }
 
 class _AuthenticationscreenState extends State<Authenticationscreen> {
-  final  _formkey =  GlobalKey<FormState>();
-  TextEditingController _codeController =  TextEditingController();
-  
-  
+  final _formkey = GlobalKey<FormState>();
+  TextEditingController _codeController = TextEditingController();
 
-  void _submiteForm(){
+  void _submiteForm() {
     final isValid = _formkey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid){
+    if (isValid) {
       _formkey.currentState!.save();
-      
-      
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +36,11 @@ class _AuthenticationscreenState extends State<Authenticationscreen> {
                   children: [
                     SizedBox(width: 7),
                     IconButton(
-                      icon:
-                          Icon(Icons.arrow_back_ios, color: Color(0xFFF2C744)),
-                      onPressed: () {
-                        Get.back();
-                      }
-                    ),
+                        icon: Icon(Icons.arrow_back_ios,
+                            color: Color(0xFFF2C744)),
+                        onPressed: () {
+                          Get.back();
+                        }),
                     SizedBox(width: 90),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +80,7 @@ class _AuthenticationscreenState extends State<Authenticationscreen> {
                           TextFormField(
                             controller: _codeController,
                             validator: (value) {
-                              if (value!.length != 6 ) {
+                              if (value!.length != 6) {
                                 return "Code must have 6 digits";
                               }
                               return null;
@@ -98,7 +93,8 @@ class _AuthenticationscreenState extends State<Authenticationscreen> {
                             cursorHeight: 25.0,
                             decoration: InputDecoration(
                               labelText: "Enter the code :",
-                              labelStyle: TextStyle(fontSize: 20, color:Colors.black),
+                              labelStyle:
+                                  TextStyle(fontSize: 20, color: Colors.black),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.grey,
@@ -107,30 +103,19 @@ class _AuthenticationscreenState extends State<Authenticationscreen> {
                             ),
                           ),
                           SizedBox(height: 50),
-                          MaterialButton(
-                            onPressed: () {
+                          LoginButton(
+                            title: "Next",
+                            onButtonTap: () {
                               _submiteForm();
                               if (_formkey.currentState!.validate()) {
                                 print("otp code: ${_codeController.text}");
-                                Get.to(()=>HomeScreen());
+                                Get.to(() => HomeScreen());
                               }
                             },
-                            height: 60,
-                            minWidth: double.infinity,
-                            color: Color(0xFF1D1F54),
-                            textColor: Color(0xFFF2C744),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              "Next",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ),
-                          SizedBox(height: 360,)
+                          SizedBox(
+                            height: 360,
+                          )
                         ]),
                   ),
                 ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upprog/View/HomeScreen.dart';
 import 'package:upprog/View/auth/register_screen.dart';
-import 'package:upprog/View/login_button.dart';
+import 'package:upprog/View/widgets/login_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -142,14 +142,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () {},
                                   child: Text(
                                     "I forgot the password",
-                                  
                                   ),
                                 ),
                               ],
                             ),
                             SizedBox(height: 25),
-                            MaterialButton(
-                              onPressed: () {
+                            LoginButton(
+                              height: 55.0,
+                              title: "Login",
+                              onButtonTap: () {
                                 _submiteForm();
                                 if (_formkey.currentState!.validate()) {
                                   print("Email: ${_emailController.text}");
@@ -158,30 +159,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Get.to(() => HomeScreen());
                                 }
                               },
-                              height: 60,
-                              minWidth: double.infinity,
-                              color: Color(0xFF1D1F54),
-                              textColor: Color(0xFFF2C744),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                             ),
                             SizedBox(height: 30.0),
-                            
                             TextButton(
                               onPressed: () {
                                 Get.to(() => RegisterScreen());
                               },
                               child: Text(
                                 "Create a new account",
-                                
                               ),
                             ),
                             SizedBox(

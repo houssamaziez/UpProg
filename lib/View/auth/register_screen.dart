@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upprog/View/auth/authentication_screen.dart';
 import 'package:upprog/View/auth/login_screen.dart';
+import 'package:upprog/View/widgets/login_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -10,17 +11,17 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final  _formkey =  GlobalKey<FormState>();
-  TextEditingController _emailController =  TextEditingController();
-  TextEditingController _nameController =  TextEditingController();
-  TextEditingController _phoneController =  TextEditingController();
-  TextEditingController _workplaceController =  TextEditingController();
-  TextEditingController _passwordController =  TextEditingController();
-  
-  final FocusNode _nameFocusNode =FocusNode() ;
-  final FocusNode _phoneFocusNode =FocusNode() ;
-  final FocusNode _workplaceFocusNode =FocusNode() ;
-  final FocusNode _passwordFocusNode =FocusNode() ;
+  final _formkey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _workplaceController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _phoneFocusNode = FocusNode();
+  final FocusNode _workplaceFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
   bool _obscureText = true;
 
   @override
@@ -32,14 +33,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  void _submiteForm(){
+  void _submiteForm() {
     final isValid = _formkey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid){
+    if (isValid) {
       _formkey.currentState!.save();
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,12 +56,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     SizedBox(width: 7),
                     IconButton(
-                      icon:
-                          Icon(Icons.arrow_back_ios, color: Color(0xFFF2C744)),
-                      onPressed: () {
-                        Get.to(()=>LoginScreen());
-                      }
-                    ),
+                        icon: Icon(Icons.arrow_back_ios,
+                            color: Color(0xFFF2C744)),
+                        onPressed: () {
+                          Get.to(() => LoginScreen());
+                        }),
                     SizedBox(width: 90),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -101,25 +101,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
-                              onEditingComplete: ()=> FocusScope.of(context).requestFocus(_nameFocusNode),
+                              onEditingComplete: () => FocusScope.of(context)
+                                  .requestFocus(_nameFocusNode),
                               cursorColor: Colors.grey,
                               cursorHeight: 25.0,
                               decoration: InputDecoration(
                                 labelText: "Email :",
-                                labelStyle: TextStyle(fontSize: 20, color:Colors.black),
+                                labelStyle: TextStyle(
+                                    fontSize: 20, color: Colors.black),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.grey,
                                   ),
                                 ),
                               ),
-                              
                             ),
                             SizedBox(height: 20),
                             TextFormField(
                               controller: _nameController,
                               validator: (value) {
-                                if (value!.isEmpty ) {
+                                if (value!.isEmpty) {
                                   return "Name can't be null";
                                 }
                                 return null;
@@ -127,25 +128,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               keyboardType: TextInputType.name,
                               focusNode: _nameFocusNode,
                               textInputAction: TextInputAction.next,
-                              onEditingComplete: ()=> FocusScope.of(context).requestFocus(_phoneFocusNode),
+                              onEditingComplete: () => FocusScope.of(context)
+                                  .requestFocus(_phoneFocusNode),
                               cursorColor: Colors.grey,
                               cursorHeight: 25.0,
                               decoration: InputDecoration(
                                 labelText: "Full name :",
-                                labelStyle: TextStyle(fontSize: 20, color:Colors.black),
+                                labelStyle: TextStyle(
+                                    fontSize: 20, color: Colors.black),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.grey,
                                   ),
                                 ),
                               ),
-                              
                             ),
                             SizedBox(height: 20),
                             TextFormField(
                               controller: _phoneController,
                               validator: (value) {
-                                if (value!.isEmpty ) {
+                                if (value!.isEmpty) {
                                   return "Please enter a valid phone number";
                                 }
                                 return null;
@@ -153,25 +155,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               keyboardType: TextInputType.phone,
                               focusNode: _phoneFocusNode,
                               textInputAction: TextInputAction.next,
-                              onEditingComplete: ()=> FocusScope.of(context).requestFocus(_workplaceFocusNode),
+                              onEditingComplete: () => FocusScope.of(context)
+                                  .requestFocus(_workplaceFocusNode),
                               cursorColor: Colors.grey,
                               cursorHeight: 25.0,
                               decoration: InputDecoration(
                                 labelText: "Phone :",
-                                labelStyle: TextStyle(fontSize: 20, color:Colors.black),
+                                labelStyle: TextStyle(
+                                    fontSize: 20, color: Colors.black),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.grey,
                                   ),
                                 ),
                               ),
-                              
                             ),
                             SizedBox(height: 20),
                             TextFormField(
                               controller: _workplaceController,
                               validator: (value) {
-                                if (value!.isEmpty ) {
+                                if (value!.isEmpty) {
                                   return "Please enter your address";
                                 }
                                 return null;
@@ -179,19 +182,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               keyboardType: TextInputType.streetAddress,
                               focusNode: _workplaceFocusNode,
                               textInputAction: TextInputAction.next,
-                              onEditingComplete: ()=> FocusScope.of(context).requestFocus(_passwordFocusNode),
+                              onEditingComplete: () => FocusScope.of(context)
+                                  .requestFocus(_passwordFocusNode),
                               cursorColor: Colors.grey,
                               cursorHeight: 25.0,
                               decoration: InputDecoration(
                                 labelText: "Workplace :",
-                                labelStyle: TextStyle(fontSize: 20, color:Colors.black),
+                                labelStyle: TextStyle(
+                                    fontSize: 20, color: Colors.black),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.grey,
                                   ),
                                 ),
                               ),
-                              
                             ),
                             SizedBox(height: 20),
                             TextFormField(
@@ -209,55 +213,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               cursorHeight: 25.0,
                               decoration: InputDecoration(
                                 labelText: "Password :",
-                                labelStyle: TextStyle(fontSize: 20, color: Colors.black),
+                                labelStyle: TextStyle(
+                                    fontSize: 20, color: Colors.black),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.grey,
                                   ),
                                 ),
                                 suffixIcon: GestureDetector(
-                                  
                                   onTap: () {
-                                    setState(() {_obscureText = !_obscureText;});
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
                                   },
                                   child: Icon(
                                     _obscureText
                                         ? Icons.visibility
                                         : Icons.visibility_off,
-                                        color: Colors.black,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
                               obscureText: _obscureText,
                             ),
                             SizedBox(height: 50),
-                            MaterialButton(
-                              onPressed: () {
+                            LoginButton(
+                              title: "Next",
+                              onButtonTap: () {
                                 _submiteForm();
                                 if (_formkey.currentState!.validate()) {
                                   print("Email: ${_emailController.text}");
                                   print("Name: ${_nameController.text}");
                                   print("Phone: ${_phoneController.text}");
-                                  print("Workplace: ${_workplaceController.text}");
-                                  print("Password: ${_passwordController.text}");
-                                  Get.to(()=>Authenticationscreen());
+                                  print(
+                                      "Workplace: ${_workplaceController.text}");
+                                  print(
+                                      "Password: ${_passwordController.text}");
+                                  Get.to(() => Authenticationscreen());
                                 }
-                                
                               },
-                              height: 60,
-                              minWidth: double.infinity,
-                              color: Color(0xFF1D1F54),
-                              textColor: Color(0xFFF2C744),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                "Next",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                             ),
                             SizedBox(height: 60),
                           ]),
