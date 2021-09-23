@@ -36,6 +36,7 @@ class HomeView extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 3.0, right: 3.0, top: 6),
                         child: CardWidget(
+                          list: constroller.listCard[index].toString(),
                           image:
                               constroller.listCard[index]["image"].toString(),
                           title:

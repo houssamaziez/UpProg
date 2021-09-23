@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:upprog/Controller/controller_profile.dart';
+import 'package:upprog/Controller/controller_pannier.dart';
+import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/View/Profile.dart/widget.dart';
+import 'package:upprog/View/widgets/my_button.dart';
 import 'package:upprog/const/colors.dart';
 
 class ProduitProfile extends StatelessWidget {
   final image, title, price;
-
-  const ProduitProfile({Key? key, this.image, this.title, this.price})
+  final list;
+  var ff = Get.put(ControllerPannier(), permanent: true);
+  ProduitProfile({Key? key, this.image, this.title, this.price, this.list})
       : super(key: key);
 
   @override
@@ -51,46 +54,25 @@ class ProduitProfile extends StatelessWidget {
             width: double.infinity,
             child: ListView(
               children: [
-                pieceImage(image: image),
+                pieceImage(
+                  image: image,
+                ),
                 piecedetail(),
               ],
             ),
           ),
           //  botton add
-          Padding(
-            padding: const EdgeInsets.only(right: 30, left: 30, bottom: 20),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      blue,
-                      Color(0xFF7D7EA8),
-                    ],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      spreadRadius: 0.5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                  borderRadius: const BorderRadius.all(Radius.circular(6)),
-                  color: blue,
-                ),
-                width: double.infinity,
-                height: 57,
-                child: const Center(
-                  child: Text(
-                    "Add to Cart",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+          GetBuilder<ControllerHome>(
+            builder: (controllerHome) => GetBuilder<ControllerPannier>(
+              builder: (controllerPannier) => Mybutton(() {
+                controllerHome.indextbottonAppChng(3);
+                Get.back();
+                controllerPannier.addtolistPannier(
+                  image: image,
+                  title: title,
+                  price: price,
+                );
+              }),
             ),
           )
         ],
@@ -110,11 +92,11 @@ class ProduitProfile extends StatelessWidget {
         children: [
           //  text title
           Padding(
-            padding: const EdgeInsets.only(left: 20, top: 10),
+            padding: const EdgeInsets.only(left: 20, top: 0),
             child: Text(
               title,
               style: const TextStyle(
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
@@ -122,7 +104,9 @@ class ProduitProfile extends StatelessWidget {
 
 //  text prix
           Padding(
-            padding: const EdgeInsets.only(left: 23, top: 0),
+            padding: const EdgeInsets.only(
+              left: 20,
+            ),
             child: Text(
               '\$$price',
               style: const TextStyle(fontSize: 25, color: Colors.black),
@@ -138,7 +122,7 @@ class ProduitProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
 
           Row(
@@ -150,13 +134,11 @@ class ProduitProfile extends StatelessWidget {
               colorschng(color: Colors.grey, indext: 4),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+
           // chng Size
 
           const Padding(
-            padding: EdgeInsets.only(left: 20, top: 10),
+            padding: EdgeInsets.only(left: 20, top: 0),
             child: Text(
               'Size',
               style: TextStyle(fontSize: 15, color: Colors.black),

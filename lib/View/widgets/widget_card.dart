@@ -5,15 +5,28 @@ import 'package:upprog/View/Profile.dart/produit_profile.dart';
 
 class CardWidget extends StatelessWidget {
   final String image, title, price;
-  const CardWidget(
-      {Key? key, required this.image, required this.title, required this.price})
-      : super(key: key);
+  final list;
+
+  const CardWidget({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.price,
+    this.list,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(ProduitProfile(image: image, title: title, price: price));
+        print(list);
+        print("dddddddddddddddddddddddddddddddddddddddddd");
+        Get.to(() => ProduitProfile(
+              image: image,
+              title: title,
+              price: price,
+              list: list,
+            ));
       },
       child: Container(
         child: Stack(

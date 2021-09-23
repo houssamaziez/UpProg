@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:upprog/Controller/controller_pannier.dart';
+import 'package:upprog/Controller/controllerhome.dart';
+import 'package:upprog/View/Pannier/widget_pannier.dart';
+import 'package:upprog/View/widgets/my_button.dart';
 import 'package:upprog/View/widgets/widget_bottom_navigation.dart';
 
 class ScreenPannier extends StatelessWidget {
@@ -10,105 +15,85 @@ class ScreenPannier extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 25, left: 8.0, right: 8.0),
-          child: ListView.builder(
-              itemCount: 100,
-              itemBuilder: (context, indext) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 10, bottom: 30),
-                  child: Container(
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              )),
-                        ),
-                        Expanded(
-                          child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Ejzfn nfjzen zenf",
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    "Black - Xl",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.grey),
-                                  ),
-                                  const Spacer(),
-                                  Container(
-                                    width: double.infinity,
-                                    child: Row(
-                                      children: const [
-                                        Text(
-                                          "\$150",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Spacer(),
-                                        CircleAvatar(
-                                          radius: 12,
-                                          child: Text(
-                                            "-",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "0",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        CircleAvatar(
-                                          radius: 12,
-                                          child: Text(
-                                            "+",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+        GetX<ControllerPannier>(
+          init: ControllerPannier(),
+          builder: (controller) => Padding(
+            padding: const EdgeInsets.only(top: 25, left: 8.0, right: 8.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: controller.listPannier.length,
+                      itemBuilder: (context, indext) {
+                        return Cardpannier(
+                            imeg: controller.listPannier[indext]["image"]
+                                .toString(),
+                            prix: controller.listPannier[indext]["prix"]
+                                .toString(),
+                            title: controller.listPannier[indext]["title"]
+                                .toString(),
+                            indext: indext);
+                      }),
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: GetX<ControllerHome>(
+              init: ControllerHome(),
+              builder: (controller) => controller.indextbottonApp.value == 3
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 0.5,
+                            blurRadius: 15,
+                            offset: Offset(0, -3),
+                          )
+                        ],
+                      ),
+                      width: double.infinity,
+                      height: 140,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                right: 32, left: 32, top: 20),
+                            child: Row(
+                              children: const [
+                                Text(
+                                  'Total :',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Spacer(),
+                                Text(
+                                  "\$150",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-        ),
-        BottomNavigation()
+                          Spacer(),
+                          Mybutton(() {
+                            print("1");
+                          }),
+                        ],
+                      ))
+                  : BottomNavigation()),
+        )
       ],
     );
   }

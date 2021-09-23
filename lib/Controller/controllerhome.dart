@@ -25,7 +25,7 @@ class ControllerHome extends GetxController {
     ScreenPannier(),
   ].obs;
 
-  var listCard = [].obs;
+  RxList listCard = [].obs;
 
   chngeList(indext) {
     switch (indext) {
@@ -43,6 +43,10 @@ class ControllerHome extends GetxController {
         break;
       default:
     }
+    print(listCard);
+
+    listCard.removeAt(4);
+    update();
   }
 
   var indextnavigator = 0.obs;

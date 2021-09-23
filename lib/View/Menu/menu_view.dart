@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:get/get.dart';
+import 'package:upprog/Controller/controllerhome.dart';
 
 class MenuView extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -11,20 +13,25 @@ class MenuView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            top: 20,
-          ),
-          child: InkWell(
-            borderRadius: const BorderRadius.all(Radius.circular(100)),
-            onTap: () {
-              controller.toggle!();
-            },
-            child: const Icon(
-              Icons.search,
-              color: Color(0xFFF2C744),
-              size: 25,
+        leading: GetX<ControllerHome>(
+          init: ControllerHome(),
+          builder: (controllr) => Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 20,
+            ),
+            child: InkWell(
+              borderRadius: const BorderRadius.all(Radius.circular(100)),
+              onTap: () {
+                controllr.indextbottonAppChng(0);
+              },
+              child: Icon(
+                controllr.indextbottonApp.value == 3
+                    ? Icons.arrow_back_ios
+                    : Icons.search,
+                color: Color(0xFFF2C744),
+                size: 25,
+              ),
             ),
           ),
         ),

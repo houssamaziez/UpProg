@@ -50,7 +50,7 @@ pieceImage({image}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 20),
     child: Container(
-      height: 370,
+      height: 350,
       decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
