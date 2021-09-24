@@ -2,6 +2,21 @@ import 'package:get/get.dart';
 
 class ControllerPannier extends GetxController {
   var listPannier = [].obs;
+  var prictotal = 0.obs;
+  addtotlapric({required int price}) {
+    if (prictotal.value >= 0) {
+      prictotal.value = prictotal.value + price;
+      update();
+    }
+  }
+
+  minustotlapric({required int price}) {
+    if (prictotal.value > 0) {
+      prictotal.value = prictotal.value - price;
+
+      update();
+    }
+  }
 
   addtolistPannier({
     price,
@@ -12,13 +27,19 @@ class ControllerPannier extends GetxController {
       {
         "title": "$title",
         "image": "$image",
-        "prix": "$price ",
+        "prix": price,
       },
     );
-    print(listPannier[1]["title"].toString());
   }
 
-  var indext = 0.obs;
+  var listprix = 1.obs;
+  otal() {
+    for (var i = 0; i < listPannier.length; i++) {
+      print(listPannier[i]["prix"].toString());
+    }
+  }
+
+  var indext = 1.obs;
   indextsizeChng(indext) {
     indext.value = indext;
     update();

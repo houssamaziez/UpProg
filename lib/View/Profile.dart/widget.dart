@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:upprog/Controller/controller_profile.dart';
 import 'package:upprog/const/colors.dart';
 
-sizewidget({size, indext}) {
+sizewidget({
+  size,
+  indext,
+}) {
   return GetX<ControllerProfile>(
     init: ControllerProfile(),
     builder: (controller) => Expanded(
@@ -46,18 +49,18 @@ sizewidget({size, indext}) {
   );
 }
 
-pieceImage({image}) {
+pieceImage({context, image}) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 20),
+    padding: const EdgeInsets.only(bottom: 15),
     child: Container(
-      height: 350,
+      height: MediaQuery.of(context).size.height * 0.45,
       decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
-              color: Colors.grey,
-              spreadRadius: 0.03,
+              color: blue,
+              spreadRadius: 0.5,
               blurRadius: 10,
-              offset: Offset(0, 8),
+              offset: Offset(0, 0),
             )
           ],
           image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),

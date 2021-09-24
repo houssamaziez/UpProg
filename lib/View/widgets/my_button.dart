@@ -8,7 +8,7 @@ class Mybutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 30, left: 30, bottom: 20),
+      padding: const EdgeInsets.only(right: 50, left: 50, bottom: 20),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(

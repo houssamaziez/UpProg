@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class ProduitProfile extends StatelessWidget {
   final image, title, price;
   final list;
   var ff = Get.put(ControllerPannier(), permanent: true);
+  var controllser = Get.put(ControllerHome(), permanent: true);
   ProduitProfile({Key? key, this.image, this.title, this.price, this.list})
       : super(key: key);
 
@@ -24,7 +26,45 @@ class ProduitProfile extends StatelessWidget {
         actions: [
           SizedBox(
             height: 59,
-            child: Center(child: Image.asset("images/corbeille.png")),
+            child: Center(
+                child: InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              onTap: () {
+                controllser.indextbottonAppChng(3);
+                Get.back();
+              },
+              child: Stack(
+                children: [
+                  GetX<ControllerPannier>(
+                    init: ControllerPannier(),
+                    builder: (control) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: CircleAvatar(
+                          radius: 8,
+                          backgroundColor: control.listPannier.length == 0
+                              ? Colors.transparent
+                              : Colors.red,
+                          child: Text(
+                            control.listPannier.length.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: control.listPannier.length == 0
+                                  ? Colors.transparent
+                                  : Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                      alignment: Alignment.center,
+                      child: Image.asset("images/corbeille.png")),
+                ],
+              ),
+            )),
           ),
           const SizedBox(
             width: 40,
@@ -54,9 +94,7 @@ class ProduitProfile extends StatelessWidget {
             width: double.infinity,
             child: ListView(
               children: [
-                pieceImage(
-                  image: image,
-                ),
+                pieceImage(image: image, context: context),
                 piecedetail(),
               ],
             ),
@@ -72,6 +110,7 @@ class ProduitProfile extends StatelessWidget {
                   title: title,
                   price: price,
                 );
+                controllerPannier.addtotlapric(price: int.parse(price));
               }),
             ),
           )
@@ -115,10 +154,10 @@ class ProduitProfile extends StatelessWidget {
 //  chng color
 
           const Padding(
-            padding: EdgeInsets.only(left: 20, top: 10),
+            padding: EdgeInsets.only(left: 20, top: 15),
             child: Text(
               'Colour',
-              style: TextStyle(fontSize: 15, color: Colors.black),
+              style: TextStyle(fontSize: 17, color: Colors.black),
             ),
           ),
           const SizedBox(
@@ -138,10 +177,10 @@ class ProduitProfile extends StatelessWidget {
           // chng Size
 
           const Padding(
-            padding: EdgeInsets.only(left: 20, top: 0),
+            padding: EdgeInsets.only(left: 20, top: 10),
             child: Text(
               'Size',
-              style: TextStyle(fontSize: 15, color: Colors.black),
+              style: TextStyle(fontSize: 17, color: Colors.black),
             ),
           ),
           const SizedBox(
@@ -180,7 +219,7 @@ class ProduitProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 320,
+            height: 200,
           )
         ],
       ),

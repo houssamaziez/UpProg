@@ -13,6 +13,8 @@ class ScreenPannier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerPannier(), permanent: true);
+    var totel = 0;
     return Stack(
       children: [
         GetX<ControllerPannier>(
@@ -25,14 +27,18 @@ class ScreenPannier extends StatelessWidget {
                   child: ListView.builder(
                       itemCount: controller.listPannier.length,
                       itemBuilder: (context, indext) {
-                        return Cardpannier(
-                            imeg: controller.listPannier[indext]["image"]
-                                .toString(),
-                            prix: controller.listPannier[indext]["prix"]
-                                .toString(),
-                            title: controller.listPannier[indext]["title"]
-                                .toString(),
-                            indext: indext);
+                        return Column(
+                          children: [
+                            Cardpannier(
+                                imeg: controller.listPannier[indext]["image"]
+                                    .toString(),
+                                prix: controller.listPannier[indext]["prix"]
+                                    .toString(),
+                                title: controller.listPannier[indext]["title"]
+                                    .toString(),
+                                indext: indext),
+                          ],
+                        );
                       }),
                 ),
                 SizedBox(
@@ -67,29 +73,33 @@ class ScreenPannier extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 right: 32, left: 32, top: 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                   'Total :',
                                   style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.grey,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Spacer(),
-                                Text(
-                                  "\$150",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                const Spacer(),
+                                GetX<ControllerPannier>(
+                                  init: ControllerPannier(),
+                                  builder: (c) => Text(
+                                    "\$${c.prictotal}",
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           Spacer(),
-                          Mybutton(() {
-                            print("1");
-                          }),
+                          GetBuilder<ControllerPannier>(
+                            init: ControllerPannier(),
+                            builder: (contr) => Mybutton(() {}),
+                          ),
                         ],
                       ))
                   : BottomNavigation()),

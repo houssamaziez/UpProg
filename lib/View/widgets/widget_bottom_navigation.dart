@@ -1,22 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:upprog/Controller/controller_pannier.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/const/colors.dart';
 
 class BottomNavigation extends StatelessWidget {
+  var ff = Get.put(ControllerPannier(), permanent: true);
+
   _button({image, indext = 0}) {
     return GetBuilder<ControllerHome>(
       init: ControllerHome(),
       builder: (controller) => Expanded(
-          child: InkWell(
-        onTap: () {
-          controller.indextbottonAppChng(indext);
-        },
-        child: SizedBox(
-          height: 59,
-          child: Center(child: Image.asset(image)),
+        child: InkWell(
+          onTap: () {
+            controller.indextbottonAppChng(indext);
+          },
+          child: SizedBox(
+            height: 59,
+            child: Center(
+                child: Stack(
+              children: [
+                indext == 3
+                    ? GetX<ControllerPannier>(
+                        init: ControllerPannier(),
+                        builder: (control) => Padding(
+                          padding: const EdgeInsets.only(right: 24, top: 5),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              radius: 8,
+                              backgroundColor: control.listPannier.length == 0
+                                  ? Colors.transparent
+                                  : Colors.red,
+                              child: Text(
+                                control.listPannier.length.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: control.listPannier.length == 0
+                                      ? Colors.transparent
+                                      : Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                Align(alignment: Alignment.center, child: Image.asset(image)),
+              ],
+            )),
+          ),
         ),
-      )),
+      ),
     );
   }
 

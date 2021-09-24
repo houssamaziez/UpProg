@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
+import 'package:upprog/Controller/controller_pannier.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 
 class NavifationBar extends StatelessWidget {
@@ -8,6 +10,8 @@ class NavifationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerPannier(), permanent: true);
+
     return Padding(
       padding: const EdgeInsets.only(top: 15, right: 40, left: 40),
       child: Container(
