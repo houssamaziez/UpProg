@@ -10,6 +10,7 @@ class NavifationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var ff = Get.put(ControllerPannier(), permanent: true);
 
     return Padding(

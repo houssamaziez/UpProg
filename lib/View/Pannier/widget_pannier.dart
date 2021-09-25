@@ -7,7 +7,7 @@ Padding Cardpannier({required String imeg, title, prix, indext}) {
   var ff = Get.put(ControllerPannier(), permanent: true);
 
   return Padding(
-    padding: const EdgeInsets.only(left: 10, bottom: 30),
+    padding: const EdgeInsets.only(left: 10, bottom: 0),
     child: SizedBox(
       height: 120,
       child: Row(

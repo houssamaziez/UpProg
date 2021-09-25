@@ -34,9 +34,7 @@ class ControllerPannier extends GetxController {
 
   var listprix = 1.obs;
   otal() {
-    for (var i = 0; i < listPannier.length; i++) {
-      print(listPannier[i]["prix"].toString());
-    }
+    for (var i = 0; i < listPannier.length; i++) {}
   }
 
   var indext = 1.obs;

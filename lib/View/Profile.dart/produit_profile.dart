@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controller_pannier.dart';
@@ -8,7 +11,9 @@ import 'package:upprog/View/Profile.dart/widget.dart';
 import 'package:upprog/View/widgets/my_button.dart';
 import 'package:upprog/const/colors.dart';
 
+// ignore: must_be_immutable
 class ProduitProfile extends StatelessWidget {
+  var n;
   final image, title, price;
   final list;
   var ff = Get.put(ControllerPannier(), permanent: true);
@@ -28,7 +33,7 @@ class ProduitProfile extends StatelessWidget {
             height: 59,
             child: Center(
                 child: InkWell(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
               onTap: () {
                 controllser.indextbottonAppChng(3);
                 Get.back();
@@ -43,6 +48,7 @@ class ProduitProfile extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         child: CircleAvatar(
                           radius: 8,
+                          // ignore: prefer_is_empty
                           backgroundColor: control.listPannier.length == 0
                               ? Colors.transparent
                               : Colors.red,
@@ -50,6 +56,7 @@ class ProduitProfile extends StatelessWidget {
                             control.listPannier.length.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              // ignore: prefer_is_empty
                               color: control.listPannier.length == 0
                                   ? Colors.transparent
                                   : Colors.white,
@@ -92,28 +99,33 @@ class ProduitProfile extends StatelessWidget {
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40))),
             width: double.infinity,
-            child: ListView(
-              children: [
-                pieceImage(image: image, context: context),
-                piecedetail(),
-              ],
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overscroll) {
+                print(overscroll.leading);
+
+                var reutrn = true;
+
+                try {
+                  overscroll.disallowIndicator();
+                } catch (e) {
+                  print(e);
+                }
+                return reutrn;
+              },
+              child: ListView(
+                addSemanticIndexes: false,
+                addAutomaticKeepAlives: false,
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                addRepaintBoundaries: false,
+                children: [
+                  pieceImage(image: image, context: context),
+                  piecedetail(),
+                ],
+              ),
             ),
           ),
           //  botton add
-          GetBuilder<ControllerHome>(
-            builder: (controllerHome) => GetBuilder<ControllerPannier>(
-              builder: (controllerPannier) => Mybutton(() {
-                controllerHome.indextbottonAppChng(3);
-                Get.back();
-                controllerPannier.addtolistPannier(
-                  image: image,
-                  title: title,
-                  price: price,
-                );
-                controllerPannier.addtotlapric(price: int.parse(price));
-              }),
-            ),
-          )
         ],
       ),
     );
@@ -130,31 +142,42 @@ class ProduitProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  text title
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 0),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ),
+              const Spacer(), //  text prix
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 10),
+                child: Text(
+                  '\$$price',
+                  style: const TextStyle(
+                      fontSize: 30,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                width: 30,
+              ),
+            ],
           ),
 
-//  text prix
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-            ),
-            child: Text(
-              '\$$price',
-              style: const TextStyle(fontSize: 25, color: Colors.black),
-            ),
-          ),
 //  chng color
 
           const Padding(
-            padding: EdgeInsets.only(left: 20, top: 15),
+            padding: EdgeInsets.only(left: 20, top: 45),
             child: Text(
               'Colour',
               style: TextStyle(fontSize: 17, color: Colors.black),
@@ -191,7 +214,7 @@ class ProduitProfile extends StatelessWidget {
             child: Container(
               width: double.infinity,
               height: 40,
-              color: Color(0xFFC1C1C2),
+              color: const Color(0xFFC1C1C2),
               child: Row(
                 children: [
                   sizewidget(size: "S", indext: 0),
@@ -219,7 +242,21 @@ class ProduitProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 200,
+            height: 30,
+          ),
+          GetBuilder<ControllerHome>(
+            builder: (controllerHome) => GetBuilder<ControllerPannier>(
+              builder: (controllerPannier) => Mybutton(() {
+                controllerHome.indextbottonAppChng(3);
+                Get.back();
+                controllerPannier.addtolistPannier(
+                  image: image,
+                  title: title,
+                  price: price,
+                );
+                controllerPannier.addtotlapric(price: int.parse(price));
+              }),
+            ),
           )
         ],
       ),

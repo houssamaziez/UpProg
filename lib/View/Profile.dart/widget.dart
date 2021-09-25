@@ -51,24 +51,23 @@ sizewidget({
 
 pieceImage({context, image}) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 15),
-    child: Container(
-      height: MediaQuery.of(context).size.height * 0.45,
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
               color: blue,
-              spreadRadius: 0.5,
-              blurRadius: 10,
+              spreadRadius: 0.1,
+              blurRadius: 5,
               offset: Offset(0, 0),
             )
           ],
           image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
-    ),
-  );
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
+        ),
+      ));
 }
 
 colorschng({color, indext}) {

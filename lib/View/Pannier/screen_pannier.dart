@@ -13,8 +13,8 @@ class ScreenPannier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var ff = Get.put(ControllerPannier(), permanent: true);
-    var totel = 0;
     return Stack(
       children: [
         GetX<ControllerPannier>(
@@ -29,6 +29,9 @@ class ScreenPannier extends StatelessWidget {
                       itemBuilder: (context, indext) {
                         return Column(
                           children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Cardpannier(
                                 imeg: controller.listPannier[indext]["image"]
                                     .toString(),
@@ -37,13 +40,24 @@ class ScreenPannier extends StatelessWidget {
                                 title: controller.listPannier[indext]["title"]
                                     .toString(),
                                 indext: indext),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35, right: 35, bottom: 10, top: 10),
+                              child: Divider(
+                                height: 1,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ],
                         );
                       }),
                 ),
-                SizedBox(
-                  height: 150,
-                ),
+                const SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),
@@ -61,7 +75,7 @@ class ScreenPannier extends StatelessWidget {
                             color: Colors.grey.shade400,
                             spreadRadius: 0.5,
                             blurRadius: 15,
-                            offset: Offset(0, -3),
+                            offset: const Offset(0, -3),
                           )
                         ],
                       ),
@@ -95,7 +109,7 @@ class ScreenPannier extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           GetBuilder<ControllerPannier>(
                             init: ControllerPannier(),
                             builder: (contr) => Mybutton(() {}),

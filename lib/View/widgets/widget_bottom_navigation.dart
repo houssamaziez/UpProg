@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controller_pannier.dart';
+import 'package:upprog/Controller/controller_settings.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/const/colors.dart';
 
+// ignore: must_be_immutable
 class BottomNavigation extends StatelessWidget {
   var ff = Get.put(ControllerPannier(), permanent: true);
 
@@ -16,7 +18,7 @@ class BottomNavigation extends StatelessWidget {
             controller.indextbottonAppChng(indext);
           },
           child: SizedBox(
-            height: 59,
+            height: 55,
             child: Center(
                 child: Stack(
               children: [
@@ -59,6 +61,8 @@ class BottomNavigation extends StatelessWidget {
   BottomNavigation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    var ff = Get.put(ControllerSettings(), permanent: true);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Align(
@@ -68,7 +72,7 @@ class BottomNavigation extends StatelessWidget {
           builder: (controller) => Container(
             width: MediaQuery.of(context).size.width *
                 (controller.isStore.value ? 0.8 : 0.6),
-            height: 59,
+            height: 55,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(38)),
                 boxShadow: [
@@ -80,39 +84,39 @@ class BottomNavigation extends StatelessWidget {
                   )
                 ],
                 color: blue.withOpacity(0.8)),
-            child: GetX<ControllerHome>(
-              init: ControllerHome(),
-              builder: (controllerbtton) => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _button(
-                    indext: 0,
-                    image: controllerbtton.indextbottonApp.value == 0
-                        ? "images/iconhome.png"
-                        : "images/homew.png",
-                  ),
-                  _button(
-                    indext: 1,
-                    image: controllerbtton.indextbottonApp.value == 1
-                        ? "images/d.png"
-                        : "images/dw.png",
-                  ),
-                  controllerbtton.isStore.value
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _button(
+                  indext: 0,
+                  image: controller.indextbottonApp.value == 0
+                      ? "images/iconhome.png"
+                      : "images/homew.png",
+                ),
+                _button(
+                  indext: 1,
+                  image: controller.indextbottonApp.value == 1
+                      ? "images/d.png"
+                      : "images/dw.png",
+                ),
+                GetX<ControllerSettings>(
+                  init: ControllerSettings(),
+                  builder: (cn) => cn.status.value
                       ? _button(
                           indext: 2,
-                          image: controllerbtton.indextbottonApp.value == 2
+                          image: controller.indextbottonApp.value == 2
                               ? "images/Vector.png"
                               : "images/Vectorw.png",
                         )
                       : Container(),
-                  _button(
-                    indext: 3,
-                    image: controllerbtton.indextbottonApp.value == 3
-                        ? "images/corbeille.png"
-                        : "images/corbeillew.png",
-                  ),
-                ],
-              ),
+                ),
+                _button(
+                  indext: 3,
+                  image: controller.indextbottonApp.value == 3
+                      ? "images/corbeille.png"
+                      : "images/corbeillew.png",
+                ),
+              ],
             ),
           ),
         ),

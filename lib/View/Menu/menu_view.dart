@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controllerhome.dart';
+import 'package:upprog/View/Settings/screen_settings.dart';
 
 class MenuView extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -35,7 +38,7 @@ class MenuView extends StatelessWidget {
                     controllr.indextbottonApp.value == 3
                         ? Icons.arrow_back_ios
                         : Icons.search,
-                    color: Color(0xFFF2C744),
+                    color: const Color(0xFFF2C744),
                     size: 25,
                   ),
                 ),
@@ -71,32 +74,48 @@ class MenuView extends StatelessWidget {
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     height: 47,
                   ),
-                  Text(
+                  const Text(
                     "Profile",
                     style: TextStyle(fontSize: 19, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
-                  Text(
+                  const Text(
                     " Favoris",
                     style: TextStyle(fontSize: 19, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    child: const SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "  Settings",
+                          style: TextStyle(fontSize: 19, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      controller.toggle!();
+
+                      Timer(const Duration(milliseconds: 350), () {
+                        Get.to(Settings(
+                          drawercontroller: controller,
+                        ));
+                      });
+                    },
+                  ),
+                  const SizedBox(
                     height: 40,
                   ),
-                  Text(
-                    "  Settings",
-                    style: TextStyle(fontSize: 19, color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 40),
                     child: Text(
                       " Sign out",

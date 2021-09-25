@@ -43,7 +43,6 @@ class ControllerHome extends GetxController {
         break;
       default:
     }
-    print(listCard);
 
     listCard.removeAt(4);
     update();
