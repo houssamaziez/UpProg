@@ -15,6 +15,8 @@ class MenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerHome());
+
     return GetBuilder<ControllerHome>(
       init: ControllerHome(),
       builder: (controllser) => WillPopScope(
@@ -86,9 +88,25 @@ class MenuView extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  const Text(
-                    " Favoris",
-                    style: TextStyle(fontSize: 19, color: Colors.white),
+                  InkWell(
+                    child: const SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "  Favoris",
+                          style: TextStyle(fontSize: 19, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      controller.toggle!();
+
+                      Timer(const Duration(milliseconds: 350), () {
+                        ff.indextbottonAppChng(1);
+                        Get.back();
+                        Get.to(Settings(controllser));
+                      });
+                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -107,9 +125,7 @@ class MenuView extends StatelessWidget {
                       controller.toggle!();
 
                       Timer(const Duration(milliseconds: 350), () {
-                        Get.to(Settings(
-                          drawercontroller: controller,
-                        ));
+                        Get.to(Settings(controllser));
                       });
                     },
                   ),

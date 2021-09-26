@@ -14,7 +14,8 @@ class Settings extends StatelessWidget {
   final drawercontroller;
   var controllser = Get.put(ControllerHome(), permanent: true);
 
-  Settings({Key? key, this.drawercontroller}) : super(key: key);
+  Settings(indextbottonAppChng, {Key? key, this.drawercontroller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

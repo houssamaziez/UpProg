@@ -97,7 +97,7 @@ pieceImage({context, image, pric, name}) {
                               ))),
                         ),
                         onTap: (cc) {
-                          ff.indextbottonAppChng(3);
+                          ff.indextbottonAppChng(1);
                           Get.back();
                         },
                       );
