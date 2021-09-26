@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controllerhome.dart';
+import 'package:upprog/View/Auth/login_screen.dart';
 import 'package:upprog/View/Settings/screen_settings.dart';
 
 class MenuView extends StatelessWidget {
@@ -113,13 +114,27 @@ class MenuView extends StatelessWidget {
                     },
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 40),
-                    child: Text(
-                      " Sign out",
-                      style: TextStyle(fontSize: 19, color: Color(0xFFF2C744)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: InkWell(
+                      child: Container(
+                        height: 50,
+                        child: const Center(
+                          child: Text(
+                            " Sign out",
+                            style: TextStyle(
+                                fontSize: 19, color: Color(0xFFF2C744)),
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        controller.toggle!();
+                        Timer(const Duration(milliseconds: 350), () {
+                          Get.offAll(LoginScreen());
+                        });
+                      },
                     ),
                   ),
                 ],

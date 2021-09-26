@@ -11,12 +11,13 @@ class Seelcion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerSettings(), permanent: true);
     return Scaffold(
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: InkWell(
             onTap: () {
-              Get.offAll(const StartHome());
+              Get.to(() => const StartHome());
             },
             child: Container(
               width: double.infinity,
@@ -104,15 +105,19 @@ class Seelcion extends StatelessWidget {
                                 color: amber,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(15))),
-                            height: controller.status.value == true ? 281 : 360,
-                            width: 185,
+                            height: controller.status.value == true
+                                ? MediaQuery.of(context).size.height * 0.40
+                                : MediaQuery.of(context).size.height * 0.54,
+                            width: MediaQuery.of(context).size.width * 0.44,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Spacer(),
                                 Container(
-                                  height: 281,
-                                  width: 185,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.40,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage("images/st1.png"),
@@ -167,16 +172,19 @@ class Seelcion extends StatelessWidget {
                                 color: amber,
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(15))),
-                            height:
-                                controller.status.value == false ? 281 : 360,
-                            width: 185,
+                            height: controller.status.value == false
+                                ? MediaQuery.of(context).size.height * 0.40
+                                : MediaQuery.of(context).size.height * 0.54,
+                            width: MediaQuery.of(context).size.width * 0.44,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Spacer(),
                                 Container(
-                                  height: 281,
-                                  width: 185,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage("images/st2.png"),

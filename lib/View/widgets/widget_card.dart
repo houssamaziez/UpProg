@@ -19,8 +19,6 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(list);
-        print("dddddddddddddddddddddddddddddddddddddddddd");
         Get.to(() => ProduitProfile(
               image: image,
               title: title,

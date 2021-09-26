@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controller_pannier.dart';
+import 'package:upprog/Controller/controller_profile.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/View/Profile.dart/widget.dart';
 import 'package:upprog/View/widgets/my_button.dart';
@@ -23,6 +24,8 @@ class ProduitProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerProfile(), permanent: true);
+
     return Scaffold(
       backgroundColor: blue,
       appBar: AppBar(
@@ -119,7 +122,8 @@ class ProduitProfile extends StatelessWidget {
                     ScrollViewKeyboardDismissBehavior.onDrag,
                 addRepaintBoundaries: false,
                 children: [
-                  pieceImage(image: image, context: context),
+                  pieceImage(
+                      image: image, context: context, name: title, pric: price),
                   piecedetail(),
                 ],
               ),

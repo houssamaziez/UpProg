@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:upprog/Controller/controller_settings.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/View/widgets/widget_drawer.dart';
 
@@ -8,6 +9,8 @@ class StartHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ff = Get.put(ControllerSettings(), permanent: true);
+
     return Scaffold(
       body: DrawerZome(
         screen: GetX<ControllerHome>(

@@ -21,45 +21,69 @@ class ScreenPannier extends StatelessWidget {
           init: ControllerPannier(),
           builder: (controller) => Padding(
             padding: const EdgeInsets.only(top: 25, left: 8.0, right: 8.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: controller.listPannier.length,
-                      itemBuilder: (context, indext) {
-                        return Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Cardpannier(
-                                imeg: controller.listPannier[indext]["image"]
-                                    .toString(),
-                                prix: controller.listPannier[indext]["prix"]
-                                    .toString(),
-                                title: controller.listPannier[indext]["title"]
-                                    .toString(),
-                                indext: indext),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                  left: 35, right: 35, bottom: 10, top: 10),
-                              child: Divider(
-                                height: 1,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        );
-                      }),
-                ),
-                const SizedBox(
-                  height: 100,
-                )
-              ],
-            ),
+            child: controller.listPannier.length != 0
+                ? Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: controller.listPannier.length,
+                            itemBuilder: (context, indext) {
+                              return Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Cardpannier(
+                                      imeg: controller.listPannier[indext]
+                                              ["image"]
+                                          .toString(),
+                                      prix: controller.listPannier[indext]
+                                              ["prix"]
+                                          .toString(),
+                                      title: controller.listPannier[indext]
+                                              ["title"]
+                                          .toString(),
+                                      indext: indext),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 35,
+                                        right: 35,
+                                        bottom: 10,
+                                        top: 10),
+                                    child: Divider(
+                                      height: 1,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                      ),
+                      const SizedBox(
+                        height: 100,
+                      )
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Spacer(),
+                      Center(
+                        child: Container(
+                          height: 200,
+                          width: 200,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("images/emptycart.png"))),
+                        ),
+                      ),
+                      Spacer(),
+                      Spacer(),
+                      Spacer(),
+                    ],
+                  ),
           ),
         ),
         Align(

@@ -49,7 +49,7 @@ sizewidget({
   );
 }
 
-pieceImage({context, image}) {
+pieceImage({context, image, pric, name}) {
   return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: Container(
@@ -66,6 +66,47 @@ pieceImage({context, image}) {
           image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(40)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 30, bottom: 15),
+          child: Align(
+              alignment: Alignment.bottomRight,
+              child: GetX<ControllerProfile>(
+                init: ControllerProfile(),
+                builder: (controller) => InkWell(
+                  onTap: () {
+                    if (controller.listfavorite.contains(image) == false) {
+                      controller.chngfavorite(false);
+                      controller.addTolistfavorite(image);
+                      controller.addlistfav(
+                          image: image, pric: pric, title: name);
+                    } else {
+                      controller.chngfavorite(true);
+                      controller.listfavorite.remove(image);
+                      controller.listfav
+                          .removeWhere((element) => element["image"] == image);
+                    }
+                  },
+                  child: Container(
+                    child: Center(
+                      child: controller.listfavorite.contains(image) == false
+                          ? Image.asset(
+                              "images/favoriteDSC.png",
+                              height: 30,
+                            )
+                          : Image.asset(
+                              "images/favoriteACT.png",
+                              height: 35,
+                            ),
+                    ),
+                    height: 55,
+                    width: 55,
+                    decoration: BoxDecoration(
+                        color: amber.withOpacity(0.5),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                  ),
+                ),
+              )),
         ),
       ));
 }
