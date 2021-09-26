@@ -181,7 +181,7 @@ class ProduitProfile extends StatelessWidget {
 //  chng color
 
           const Padding(
-            padding: EdgeInsets.only(left: 20, top: 45),
+            padding: EdgeInsets.only(left: 20, top: 69),
             child: Text(
               'Colour',
               style: TextStyle(fontSize: 17, color: Colors.black),

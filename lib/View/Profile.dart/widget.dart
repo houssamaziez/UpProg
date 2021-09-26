@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:upprog/Controller/controller_profile.dart';
+import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/const/colors.dart';
 
 sizewidget({
@@ -50,6 +51,7 @@ sizewidget({
 }
 
 pieceImage({context, image, pric, name}) {
+  var ff = Get.put(ControllerHome());
   return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: Container(
@@ -80,11 +82,45 @@ pieceImage({context, image, pric, name}) {
                       controller.addTolistfavorite(image);
                       controller.addlistfav(
                           image: image, pric: pric, title: name);
+                      Get.snackbar(
+                        "Favorite",
+                        "Added to favourites",
+                        colorText: Colors.white,
+                        icon: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                image,
+                              ))),
+                        ),
+                        onTap: (cc) {
+                          ff.indextbottonAppChng(3);
+                          Get.back();
+                        },
+                      );
                     } else {
                       controller.chngfavorite(true);
                       controller.listfavorite.remove(image);
                       controller.listfav
                           .removeWhere((element) => element["image"] == image);
+                      Get.snackbar(
+                        "Favorite",
+                        "remove from favourites",
+                        colorText: Colors.white,
+                        icon: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                image,
+                              ))),
+                        ),
+                      );
                     }
                   },
                   child: Container(
