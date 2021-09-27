@@ -151,14 +151,16 @@ class ProduitProfile extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 0),
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 0),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
                 ),
               ),
               const Spacer(), //  text prix

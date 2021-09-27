@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:upprog/Controller/controllerhome.dart';
 import 'package:upprog/View/Auth/login_screen.dart';
 import 'package:upprog/View/Settings/screen_settings.dart';
+import 'package:upprog/View/Start/start_home.dart';
 
 class MenuView extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -103,8 +104,8 @@ class MenuView extends StatelessWidget {
 
                       Timer(const Duration(milliseconds: 350), () {
                         ff.indextbottonAppChng(1);
-                        Get.back();
-                        Get.to(Settings(controllser));
+
+                        Get.to(const StartHome());
                       });
                     },
                   ),

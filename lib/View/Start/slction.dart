@@ -99,7 +99,9 @@ class Seelcion extends StatelessWidget {
                                     amber,
                                     amber,
                                     amber,
-                                    amber.withOpacity(0.19),
+                                    controller.status.value == false
+                                        ? amber.withOpacity(0.19)
+                                        : amber,
                                   ],
                                 ),
                                 color: amber,
@@ -166,7 +168,9 @@ class Seelcion extends StatelessWidget {
                                     amber,
                                     amber,
                                     amber,
-                                    amber.withOpacity(0.3),
+                                    controller.status.value == true
+                                        ? amber.withOpacity(0.19)
+                                        : amber,
                                   ],
                                 ),
                                 color: amber,

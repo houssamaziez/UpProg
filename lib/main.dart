@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'View/Start/screen_start.dart';
-import 'View/Start/slction.dart';
 
 void main() {
   runApp(const MyApp());

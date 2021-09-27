@@ -37,66 +37,71 @@ class ScrennFavoris extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(
                             top: 10, bottom: 10, left: 8, right: 8),
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => ProduitProfile(
-                                  image: controller.listfav[index]["image"],
-                                  title: controller.listfav[index]["title"],
-                                  price: controller.listfav[index]["pric"],
-                                  list: controller.listfav[index],
-                                ));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10, right: 10),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    height: 300,
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(15)),
-                                        image: DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: AssetImage(controller
-                                                .listfav[index]["image"]))),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Text(
+                        child: Stack(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.to(() => ProduitProfile(
+                                      image: controller.listfav[index]["image"],
+                                      title: controller.listfav[index]["title"],
+                                      price: controller.listfav[index]["pric"],
+                                      list: controller.listfav[index],
+                                    ));
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 300,
+                                        width: 200,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(15)),
+                                            image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: AssetImage(controller
+                                                    .listfav[index]["image"]))),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
                                         controller.listfav[index]["title"],
                                         style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      const Spacer(),
-                                      IconButton(
-                                        onPressed: () {
-                                          controller.listfav.removeWhere(
-                                              (element) =>
-                                                  element["image"] ==
-                                                  controller.listfav[index]
-                                                      ["image"]);
-                                        },
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                          size: 35,
-                                        ),
-                                      )
-                                    ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: IconButton(
+                                  onPressed: () {
+                                    controller.listfav.removeWhere((element) =>
+                                        element["image"] ==
+                                        controller.listfav[index]["image"]);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                    size: 35,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            )
+                          ],
                         ),
                       );
                     },
